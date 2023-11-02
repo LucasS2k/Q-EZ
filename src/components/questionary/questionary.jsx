@@ -13,7 +13,9 @@ const Questionary = () => {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
 
   const currentQuestion = questions[currentQuestionIndex];
-
+  const getRandomQuestionIndex = () => {
+    return Math.floor(Math.random() * questions.length);
+  };
   const handleAnswerClick = (selectedAnswer) => {
     if (selectedAnswer === currentQuestion.correctAnswer) {
       setIsAnswerCorrect(true);
@@ -29,10 +31,8 @@ const Questionary = () => {
   useEffect(() => {
     if (isAnswerCorrect !== null) {
       const delay = setTimeout(() => {
-        if (currentQuestionIndex < questions.length - 1) {
-          setCurrentQuestionIndex(currentQuestionIndex + 1);
-        } else {
-        }
+        const randomIndex = getRandomQuestionIndex();
+        setCurrentQuestionIndex(randomIndex);
         setIsAnswerCorrect(null);
       }, 1000);
 
