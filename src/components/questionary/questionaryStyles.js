@@ -16,4 +16,5 @@ export const StyledAnswer = styled.button`
   display: flex;
   background-color: white;
   color: black;
+  justify-content: center;
 `;
