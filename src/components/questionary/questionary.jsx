@@ -9,6 +9,7 @@ import {
 const Questionary = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [highest, setHighest] = useState(0);
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
 
   const currentQuestion = questions[currentQuestionIndex];
@@ -17,6 +18,9 @@ const Questionary = () => {
     if (selectedAnswer === currentQuestion.correctAnswer) {
       setIsAnswerCorrect(true);
       setScore(score + 1);
+      if (score + 1 > highest) {
+        setHighest(score + 1);
+      }
     } else {
       setIsAnswerCorrect(false);
     }
@@ -38,6 +42,7 @@ const Questionary = () => {
 
   return (
     <StyledQuestionary>
+      <div>Puntaje más alto: {highest}</div>
       <div>Puntaje actual: {score}</div>
       <StyledQuestion>{currentQuestion.question}</StyledQuestion>
       {currentQuestion.answers.map((answer, index) => (
